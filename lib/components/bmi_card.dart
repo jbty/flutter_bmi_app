@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BmiCard extends StatelessWidget {
@@ -12,7 +13,7 @@ class BmiCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPress,
       child: Container(
-        margin: EdgeInsets.all(6.0),
+        margin: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: color,
           borderRadius: BorderRadius.circular(10.0),

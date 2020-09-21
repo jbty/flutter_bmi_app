@@ -1,10 +1,12 @@
+import 'package:bmi_calculator/components/bmi_card_content.dart';
+import 'package:bmi_calculator/components/bottom_btn.dart';
+import 'package:bmi_calculator/components/round_icon_btn.dart';
 import 'package:bmi_calculator/result_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'bmi_card.dart';
-import 'bmi_card_content.dart';
+import 'components/bmi_card.dart';
 import 'constants.dart';
 
 enum Gender {
@@ -42,8 +44,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: _selectedGender == Gender.male
-                        ? KActiveCardColor
-                        : KCardColor,
+                        ? kActiveCardColor
+                        : kCardColor,
                     cardChild: BmiCardContent(
                       icon: FontAwesomeIcons.mars,
                       title: "HOMME",
@@ -58,8 +60,8 @@ class _InputPageState extends State<InputPage> {
                       });
                     },
                     color: _selectedGender == Gender.female
-                        ? KActiveCardColor
-                        : KCardColor,
+                        ? kActiveCardColor
+                        : kCardColor,
                     cardChild: BmiCardContent(
                       icon: FontAwesomeIcons.venus,
                       title: "FEMME",
@@ -74,13 +76,13 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: BmiCard(
-                    color: KActiveCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           "TAILLE",
-                          style: KLabelTextStyle,
+                          style: kLabelTextStyle,
                         ),
                         Column(
                           textBaseline: TextBaseline.alphabetic,
@@ -92,11 +94,11 @@ class _InputPageState extends State<InputPage> {
                               children: [
                                 Text(
                                   _height.toString(),
-                                  style: KBigTextStyle,
+                                  style: kBigTextStyle,
                                 ),
                                 Text(
                                   'cm',
-                                  style: KLabelTextStyle,
+                                  style: kLabelTextStyle,
                                 ),
                               ],
                             ),
@@ -106,15 +108,15 @@ class _InputPageState extends State<InputPage> {
                                     enabledThumbRadius: 15.0),
                                 overlayShape: RoundSliderOverlayShape(
                                     overlayRadius: 30.0),
-                                thumbColor: KActionBtnColor,
-                                activeTrackColor: KActionBtnColor,
-                                overlayColor: KActionBtnOverlayColor,
+                                thumbColor: kActionBtnColor,
+                                activeTrackColor: kActionBtnColor,
+                                overlayColor: kActionBtnOverlayColor,
                               ),
                               child: Slider(
                                 value: _height.toDouble(),
                                 min: 70.0,
                                 max: 220.0,
-                                inactiveColor: KActionBtnColorAccent,
+                                inactiveColor: kActionBtnColorAccent,
                                 onChanged: (double newHeight) {
                                   setState(() {
                                     _height = newHeight.round();
@@ -136,17 +138,17 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: BmiCard(
-                    color: KActiveCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'POIDS',
-                          style: KLabelTextStyle,
+                          style: kLabelTextStyle,
                         ),
                         Text(
                           _weight.toString(),
-                          style: KBigTextStyle,
+                          style: kBigTextStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -178,17 +180,17 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: BmiCard(
-                    color: KActiveCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           'AGE',
-                          style: KLabelTextStyle,
+                          style: kLabelTextStyle,
                         ),
                         Text(
                           _age.toString(),
-                          style: KBigTextStyle,
+                          style: kBigTextStyle,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -221,7 +223,8 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
+          BottomBtn(
+            buttonTitle: "CALCULER",
             onTap: () {
               Navigator.push(
                 context,
@@ -230,49 +233,9 @@ class _InputPageState extends State<InputPage> {
                 }),
               );
             },
-            child: Container(
-              margin: EdgeInsets.only(top: 8.0),
-              color: KActionBtnColor,
-              width: double.infinity,
-              height: 80.0,
-              child: Center(
-                child: Text(
-                  "CALCULER",
-                  style: TextStyle(
-                    fontSize: 30.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
+          )
         ],
       ),
-    );
-  }
-}
-
-class RoundIconBtn extends StatelessWidget {
-  final Function onPressed;
-  final IconData icon;
-
-  RoundIconBtn({@required this.icon, this.onPressed});
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(
-        icon,
-        size: 30.0,
-      ),
-      onPressed: onPressed,
-      elevation: 0.0,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.9,
-      ),
-      shape: CircleBorder(),
-      fillColor: KAccentCardColor,
     );
   }
 }
