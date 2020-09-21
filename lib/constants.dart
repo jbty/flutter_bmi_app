@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+const String kAppTitle = 'IMC CALCULATOR';
+
 const Color kActiveCardColor = Color(0xFF1D1E33);
 const Color kCardColor = Color(0xFF111328);
 const Color kAccentCardColor = Color(0xFF4C4F5E);
@@ -22,7 +24,7 @@ const kBigTextStyle = TextStyle(
 );
 
 const kTitleTextStyle = TextStyle(
-  fontSize: 50.0,
+  fontSize: 45.0,
   fontWeight: FontWeight.bold,
 );
 
@@ -33,8 +35,9 @@ const kResultTextStyle = TextStyle(
 );
 
 const kBmiTextStyle = TextStyle(
-  fontSize: 100.0,
+  fontSize: 150.0,
   fontWeight: FontWeight.bold,
+  letterSpacing: -10.0,
 );
 
 const kBodyTextStyle = TextStyle(

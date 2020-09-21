@@ -9,11 +9,20 @@ import 'package:flutter/widgets.dart';
 import 'constants.dart';
 
 class ResultPage extends StatelessWidget {
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
+
+  ResultPage(
+      {@required this.bmiResult,
+      @required this.resultText,
+      @required this.interpretation});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("BMI CALCULATOR"),
+        title: Text(kAppTitle),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -21,7 +30,7 @@ class ResultPage extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              padding: EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
               alignment: Alignment.bottomLeft,
               child: Text(
                 "Votre Résultat",
@@ -31,31 +40,40 @@ class ResultPage extends StatelessWidget {
           ),
           Expanded(
             flex: 7,
-            child: BmiCard(
-              color: kActiveCardColor,
-              cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Normal",
-                    style: kResultTextStyle,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 5.0),
+              child: BmiCard(
+                color: kActiveCardColor,
+                cardChild: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 80.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        resultText.toUpperCase(),
+                        style: kResultTextStyle,
+                      ),
+                      Text(
+                        bmiResult,
+                        style: kBmiTextStyle,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Text(
+                          interpretation,
+                          textAlign: TextAlign.center,
+                          style: kBodyTextStyle,
+                        ),
+                      ),
+                    ],
                   ),
-                  Text(
-                    "18.3",
-                    style: kBmiTextStyle,
-                  ),
-                  Text(
-                    "Vous êtes vraiment trop FAT",
-                    textAlign: TextAlign.center,
-                    style: kBodyTextStyle,
-                  ),
-                ],
+                ),
               ),
             ),
           ),
           BottomBtn(
-            buttonTitle: "Recommencer",
+            buttonTitle: "RECOMMENCER",
             onTap: () {
               Navigator.pop(context);
             },
